@@ -22,10 +22,14 @@ class _FaceDetectionFromImageState extends State<FaceDetectionFromImage> {
   }
 
   void pickAndProcessImage() async {
-    final File file = await ImagePicker.pickImage(source: ImageSource.gallery);
-    final FirebaseVisionImage visionImage = FirebaseVisionImage.fromFile(file);
+    final XFile file =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    // final File file = await ImagePicker.pickImage(source: ImageSource.gallery);
+    final FirebaseVisionImage visionImage =
+        FirebaseVisionImage.fromFile(File(file.path));
     faces = await faceDetector.processImage(visionImage);
-    image = await _loadImage(file);
+    image = await _loadImage(File(file.path));
     setState(() {
       loading = false;
     });

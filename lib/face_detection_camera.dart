@@ -16,8 +16,6 @@ class FaceDetectionFromLiveCamera extends StatefulWidget {
 
 class _FaceDetectionFromLiveCameraState
     extends State<FaceDetectionFromLiveCamera> {
-
-
   final FaceDetector faceDetector = FirebaseVision.instance.faceDetector();
   List<Face> faces;
   CameraController _camera;
@@ -71,9 +69,7 @@ class _FaceDetectionFromLiveCameraState
   Widget _buildResults() {
     const Text noResultsText = const Text('No results!');
 
-    if (faces == null ||
-        _camera == null ||
-        !_camera.value.isInitialized) {
+    if (faces == null || _camera == null || !_camera.value.isInitialized) {
       return noResultsText;
     }
 
